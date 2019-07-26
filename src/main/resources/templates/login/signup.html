@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<title>User Signup</title>
+</head>
+<body>
+	<h1>User Signup</h1>
+	<form method="POST" th:action="@{/signup}">
+		<table>
+			<tr>
+				<th>User ID</th>
+				<td><input type="text"/></td>
+			</tr>
+			<tr>
+				<th>Password</th>
+				<td><input type="text"/></td>
+			</tr>
+			<tr>
+				<th>User Name</th>
+				<td><input type="text"/></td>
+			</tr>
+			<tr>
+				<th>Birth Day</th>
+				<td><input type="text" placeholder="yyyy/MM/dd"/></td>
+			</tr>
+			<tr>
+				<th>Age</th>
+				<td><input type="text"/></td>
+			</tr>
+			<tr>
+				<th>Marrige</th>
+				<td>
+					<div th:each="item:${radioMarriage}">
+					<input type="radio" name="radioMarriage" th:text="${item.key}" th.value="${item.value}"/>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<button type="submit">submit</button>
+	</form>
+</body>
+</html>
