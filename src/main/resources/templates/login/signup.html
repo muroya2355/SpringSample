@@ -7,37 +7,42 @@
 </head>
 <body>
 	<h1>User Signup</h1>
-	<form method="POST" th:action="@{/signup}">
+	<form method="POST" action="/signup" th:object="${signupForm}">
 		<table>
 			<tr>
 				<th>User ID</th>
-				<td><input type="text"/></td>
+				<td><input type="text" th:field="*{userId}"/></td>
 			</tr>
 			<tr>
 				<th>Password</th>
-				<td><input type="text"/></td>
+				<td><input type="text" th:field="*{password}"/></td>
 			</tr>
 			<tr>
 				<th>User Name</th>
-				<td><input type="text"/></td>
+				<td><input type="text" th:field="*{userName}"/></td>
 			</tr>
 			<tr>
 				<th>Birth Day</th>
-				<td><input type="text" placeholder="yyyy/MM/dd"/></td>
+				<td><input type="text" placeholder="yyyy/MM/dd" th:field="*{birthday}"/></td>
 			</tr>
 			<tr>
 				<th>Age</th>
-				<td><input type="text"/></td>
+				<td><input type="text" th:field="*{age}"/></td>
 			</tr>
 			<tr>
 				<th>Marrige</th>
 				<td>
 					<div th:each="item:${radioMarriage}">
-					<input type="radio" name="radioMarriage" th:text="${item.key}" th.value="${item.value}"/>
+					<input type="radio" name="radioMarriage" th:text="${item.key}" th:value="${item.value}" th:field="*{marriage}"/>
 					</div>
 				</td>
 			</tr>
 		</table>
+		<ul>
+			<li th:each="error:${#fields.detailedErrors()}">
+				<span th:text="${error.message}">Error message</span>
+			</li>
+		</ul>
 		<button type="submit">submit</button>
 	</form>
 </body>
